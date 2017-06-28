@@ -7,7 +7,6 @@ var path = require('path');
 var db = require('./models').db;
 
 var app = express();
-
 // nunjucks rendering boilerplate
 nunjucks.configure('views', { noCache: true });
 app.set('view engine', 'html');

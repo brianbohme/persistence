@@ -4,15 +4,32 @@ var Day = require('../../models').Day;
 
 
 router.get('/', function (req, res, next) {
-  res.send('got all days')
+  Day.findAll({})
+  .then(days => {
+    res.json(days)
+  })
 });
 
 router.get('/:id', function (req, res, next) {
-  res.send('got one day')
+  Day.findOne({where: {number : req.params.id}})
+  .then(day => {
+    res.json(day)
+  })
 });
 
 router.post('/:id', function (req, res, next) {
-  res.send('add or delete a day')
+  let date = req.params.id;
+  let body = req.body;
+  Day.create(
+    {number: date}
+  )
+  .then(event=>{
+    console.log(event);
+    res.sendStatus(200);
+  })
+  .catch(err => {
+    console.log(err);
+  })
 });
 
 router.post('/:id/:option', function (req, res, next) {
