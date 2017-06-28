@@ -17,11 +17,9 @@ router.get('/:id', function (req, res, next) {
   })
 });
 
-router.post('/:id', function (req, res, next) {
-  let date = req.params.id;
-  let body = req.body;
+router.post('/', function (req, res, next) {
   Day.create(
-    {number: date}
+    {}
   )
   .then(event=>{
     console.log(event);
